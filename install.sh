@@ -3,7 +3,7 @@ echo "Instalasi Bytrix Cloud Storage (MinIO + Nginx + SSL + ChatGPT Ready)"
 read -p "Masukkan subdomain kamu (contoh: files.bytrix.my.id): " DOMAIN
 
 # Clone repo ini
-git clone https://github.com/bytrixcloud/storage-ubuntu.git /tmp/storage-deploy
+git clone https://github.com/jayras008/bytrixcloud.git /tmp/storage-deploy
 cd /tmp/storage-deploy
 
 # Jalankan deploy
