@@ -1,0 +1,5 @@
+# BytrixCloud Configuration
+DOMAIN=files.bytrix.my.id
+ACCESS_KEY=contoh12345678901234
+SECRET_KEY=contohsecret1234567890123456789012345678
+DEFAULT_BUCKET=gpt-storage
