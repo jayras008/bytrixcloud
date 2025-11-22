@@ -1,0 +1,19 @@
+[Unit]
+Description=BytrixCloud - MinIO S3 Storage
+Documentation=https://min.io
+After=network.target
+
+[Service]
+Type=simple
+User=minio
+Group=minio
+Environment=MINIO_ROOT_USER=AKIAIOSFODNN7EXAMPLE
+Environment=MINIO_ROOT_PASSWORD=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+ExecStart=/usr/local/bin/minio server /data/minio --address :9000 --console-address :9001
+Restart=always
+LimitNOFILE=1048576
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
