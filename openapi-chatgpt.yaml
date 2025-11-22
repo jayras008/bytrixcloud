@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: BytrixCloud Private Storage API
+  description: S3-compatible storage untuk ChatGPT Actions (CRUD lengkap)
+  version: 1.0.0
+servers:
+  - url: https://files.bytrix.my.id
+security:
+  - AWSSignature: []
+paths:
+  /gpt-storage/{filename}:
+    put:
+      summary: Upload atau Update File
+      operationId: uploadFile
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema: { type: string, format: binary }
+      responses:
+        '200': { description: File berhasil di-upload }
+    get:
+      summary: Download File
+      operationId: downloadFile
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: File content
+          content:
+            application/octet-stream:
+              schema: { type: string, format: binary }
+    delete:
+      summary: Hapus File
+      operationId: deleteFile
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: File terhapus }
+  /gpt-storage:
+    get:
+      summary: List semua file
+      operationId: listFiles
+      responses:
+        '200':
+          description: XML list (S3 format)
+          content: { application/xml: { schema: { type: string } } }
+components:
+  securitySchemes:
+    AWSSignature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 (gunakan Access & Secret Key)
